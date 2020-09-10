@@ -1,0 +1,23 @@
+{
+  "name": "tusimo/pandable",
+  "description": "a pandable rest api",
+  "type": "library",
+  "keywords": [
+    "pandable",
+    "rest api"
+  ],
+  "homepage": "https://github.com/tusimo/pandable",
+  "license": "MIT",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require": {
+    "php": "^7.2",
+    "illuminate/support": ">=6.0",
+    "ext-json": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Tusimo\\Pandable\\": "src/"
+    }
+  }
+}
