@@ -31,12 +31,12 @@ class RequestClientQuery implements UriQueryClientContract
      */
     public function where(string $key, $operation, $value = null)
     {
-        if (!in_array($operation, static::OPERATIONS)) {
-            $this->where($key, '=', $value);
-            return $this;
-        }
         if ($value === null) {
             $this->withQueryItem(new QueryItem($key, '=', $operation));
+            return $this;
+        }
+        if (!in_array($operation, static::OPERATIONS)) {
+            $this->where($key, '=', $value);
             return $this;
         }
         $this->withQueryItem(new QueryItem($key, $operation, $value));

@@ -11,22 +11,12 @@ use Tusimo\Pandable\Entities\QueryPagination;
 use Tusimo\Pandable\Entities\QuerySelect;
 use Tusimo\Pandable\Entities\QueryWith;
 
-class RequestServerQuery implements QueryServerContract
+class RequestServerQuery extends Request implements QueryServerContract
 {
-    /**
-     * @var array
-     */
-    protected $parameters = [];
-
-    public function __construct(array $parameters)
-    {
-        $this->parameters = $parameters;
-    }
-
     public function getQueryItems(): array
     {
         $queryItems = [];
-        $queries = $this->parameters['query'] ?? [];
+        $queries = $this->get('query', []);
         foreach ($queries as $key => $query) {
             $queryItems[$key] = $this->parseQueryItem($key, $query);
         }
@@ -64,29 +54,29 @@ class RequestServerQuery implements QueryServerContract
 
     public function getQueryOrderBy(): ?QueryOrderBy
     {
-        if (!isset($this->parameters['order_by'])) {
+        if (!$this->has('order_by')) {
             return null;
         }
         return new QueryOrderBy(
-            $this->parameters['order_by'] ?? 'id',
-            $this->parameters['order'] ?? 'desc'
+            $this->get('order_by', 'id'),
+            $this->get('order', 'desc')
         );
     }
 
     public function getQueryPagination(): ?QueryPagination
     {
-        if (!isset($this->parameters['page'])) {
+        if (!$this->has('page')) {
             return null;
         }
-        return new QueryPagination($this->parameters['page'] ?? 1, $this->parameters['per_page'] ?? 10);
+        return new QueryPagination($this->get('page', 0), $this->get('per_page', 10));
     }
 
     public function getQuerySelect(): ?QuerySelect
     {
-        if (!isset($this->parameters['select'])) {
+        if (!$this->has('select')) {
             return null;
         }
-        $select = $this->parameters['select'];
+        $select = $this->get('select');
         if ($select) {
             return new QuerySelect($this->getArray($select));
         }
@@ -111,10 +101,10 @@ class RequestServerQuery implements QueryServerContract
 
     public function getQueryWith(): ?QueryWith
     {
-        if (!isset($this->parameters['with'])) {
+        if (!$this->has('with')) {
             return null;
         }
-        $with = $this->parameters['with'];
+        $with = $this->get('with');
         if ($with) {
             return new QueryWith($this->getArray($with));
         }

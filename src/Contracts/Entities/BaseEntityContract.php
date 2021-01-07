@@ -10,6 +10,11 @@ use Illuminate\Support\Carbon;
  * Interface BaseEntityContract
  * @package App\Contracts\Entities
  */
+/**
+ * Base entity interface
+ * Interface BaseEntityContract
+ * @package App\Contracts\Entities
+ */
 interface BaseEntityContract extends EntityContract
 {
     /**
@@ -115,35 +120,7 @@ interface BaseEntityContract extends EntityContract
      */
     public function getAttributesForUpdate();
 
-    /**
-     * get trashed items
-     * @return array
-     */
-    public function getTrashed(): array;
+    public function getPropertyArray(): array;
 
-    /**
-     * determine property is trashed or not
-     */
-    public function isTrashed(string $key): bool;
-
-    /**
-     * move property to trash
-     * @param string $key
-     * @return $this
-     */
-    public function trash(string $key);
-
-    /**
-     * return property and remove it
-     * @param $key
-     * @return mixed
-     */
-    public function pop($key);
-
-    /**
-     * restore trashed property
-     * @param $key
-     * @return $this
-     */
-    public function restore($key);
+    public function toEntity();
 }

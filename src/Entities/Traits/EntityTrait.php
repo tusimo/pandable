@@ -26,7 +26,7 @@ trait EntityTrait
      */
     public function covertTo($target)
     {
-        return (new $target($this->attributes))->init();
+        return (new $target($this->toArray()))->init();
     }
 
     /**
@@ -64,7 +64,6 @@ trait EntityTrait
      */
     protected function covertUpdatedRule($key, $rules)
     {
-
         if (is_string($rules)) {
             $rules = explode('|', $rules);
         }
@@ -100,12 +99,22 @@ trait EntityTrait
     }
 
     /**
+     * Get the Property Array
+     *
+     * @return array
+     */
+    public function getPropertyArray(): array
+    {
+        return Arr::only($this->attributes, $this->getProperties());
+    }
+
+    /**
      * get the attributes for create
      * @return mixed
      */
     public function getAttributesForCreate()
     {
-        $attributes = Arr::except($this->getAttributes(), ['id']);
+        $attributes = Arr::except($this->getPropertyArray(), ['id']);
         $attributes['created_at'] = Carbon::now()->toDateTimeString();
         $attributes['updated_at'] = Carbon::now()->toDateTimeString();
         return $attributes;
@@ -117,7 +126,7 @@ trait EntityTrait
      */
     public function getAttributesForUpdate()
     {
-        $attributes = Arr::except($this->getAttributes(), ['created_at']);
+        $attributes = Arr::except($this->getPropertyArray(), ['created_at']);
         $attributes['updated_at'] = Carbon::now()->toDateTimeString();
         return $attributes;
     }
@@ -129,6 +138,11 @@ trait EntityTrait
      * @return mixed
      */
     public function init()
+    {
+        return $this;
+    }
+
+    public function toEntity()
     {
         return $this;
     }
