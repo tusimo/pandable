@@ -4,12 +4,13 @@
 namespace Tusimo\Pandable\Queries;
 
 use Illuminate\Support\Str;
-use Tusimo\Pandable\Contracts\QueryServerContract;
+use Illuminate\Http\Request;
 use Tusimo\Pandable\Entities\QueryItem;
+use Tusimo\Pandable\Entities\QueryWith;
+use Tusimo\Pandable\Entities\QuerySelect;
 use Tusimo\Pandable\Entities\QueryOrderBy;
 use Tusimo\Pandable\Entities\QueryPagination;
-use Tusimo\Pandable\Entities\QuerySelect;
-use Tusimo\Pandable\Entities\QueryWith;
+use Tusimo\Pandable\Contracts\QueryServerContract;
 
 class RequestServerQuery extends Request implements QueryServerContract
 {

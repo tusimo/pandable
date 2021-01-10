@@ -39,6 +39,16 @@ trait EntityTrait
         return array_key_exists($key, $this->propertyRules);
     }
 
+        /**
+     * 根据规则创建一个新的实体
+     * @param $attributes
+     * @return static
+     */
+    public static function createEntity($attributes)
+    {
+        return new static($attributes);
+    }
+
     /**
      * get entity update rules
      * @param null $key
