@@ -154,7 +154,7 @@ class RequestClientQuery implements UriQueryClientContract
             return implode(',', $queryItem->getValue());
         }
         if ($queryItem->getOperation() === 'between') {
-            list($first, $second) = array($queryItem->getValue());
+            list($first, $second) = $queryItem->getValue();
             return $first . '~' . $second;
         }
         return $queryItem->getValue();

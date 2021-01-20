@@ -37,13 +37,13 @@ class RequestServerQuery extends Request implements QueryServerContract
     {
         if (Str::contains($queryString, '~')) {
             list($first, $second) = explode('~', $queryString);
-            if ($first && $second) {
+            if ($first !== "" && $second !== "") {
                 return new QueryItem($key, 'between', [$first, $second]);
             }
-            if ($first) {
+            if ($first != "") {
                 return new QueryItem($key, '>', $first);
             }
-            if ($second) {
+            if ($second != "") {
                 return new QueryItem($key, '<', $second);
             }
         }
