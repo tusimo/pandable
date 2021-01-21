@@ -123,4 +123,6 @@ interface BaseEntityContract extends EntityContract
     public function getPropertyArray(): array;
 
     public function toEntity();
+
+    public function resourceKey():string;
 }

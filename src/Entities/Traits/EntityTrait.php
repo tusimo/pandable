@@ -83,9 +83,6 @@ trait EntityTrait
                 $rule = 'sometimes';
             }
         }
-        if ($key == 'id') {
-            $rules[] = 'required';
-        }
         return $rules;
     }
 
@@ -124,7 +121,7 @@ trait EntityTrait
      */
     public function getAttributesForCreate()
     {
-        $attributes = Arr::except($this->getPropertyArray(), ['id']);
+        $attributes = Arr::except($this->getPropertyArray(), [$this->resourceKey()]);
         $attributes['created_at'] = Carbon::now()->toDateTimeString();
         $attributes['updated_at'] = Carbon::now()->toDateTimeString();
         return $attributes;
@@ -155,5 +152,10 @@ trait EntityTrait
     public function toEntity()
     {
         return $this;
+    }
+
+    public function resourceKey():string
+    {
+        return 'id';
     }
 }

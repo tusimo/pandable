@@ -43,7 +43,7 @@ abstract class BaseEntity extends Fluent implements BaseEntityContract
 
     public function getId(): int
     {
-        return (int)$this->id;
+        return (int)$this->{$this->resourceKey()};
     }
 
     public function getCreatedAt()
@@ -58,7 +58,7 @@ abstract class BaseEntity extends Fluent implements BaseEntityContract
 
     public function setId(int $id)
     {
-        $this->id = $id;
+        $this->{$this->resourceKey()} = $id;
         return $this;
     }
 
