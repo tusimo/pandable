@@ -25,9 +25,7 @@ abstract class BaseEntity extends Fluent implements BaseEntityContract
      */
     public function __construct($attributes = [])
     {
-        foreach ($attributes as $key => $value) {
-            $this->attributes[$key] = $value;
-        }
+        parent::__construct($attributes);
         $this->init();
     }
 
@@ -41,9 +39,9 @@ abstract class BaseEntity extends Fluent implements BaseEntityContract
         return new static($attributes);
     }
 
-    public function getId(): int
+    public function getId()
     {
-        return (int)$this->{$this->resourceKey()};
+        return $this->{$this->resourceKey()};
     }
 
     public function getCreatedAt()
@@ -56,7 +54,7 @@ abstract class BaseEntity extends Fluent implements BaseEntityContract
         return $this->updated_at;
     }
 
-    public function setId(int $id)
+    public function setId($id)
     {
         $this->{$this->resourceKey()} = $id;
         return $this;

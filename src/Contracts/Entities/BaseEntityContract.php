@@ -19,9 +19,9 @@ interface BaseEntityContract extends EntityContract
 {
     /**
      * get id
-     * @return int
+     * @return
      */
-    public function getId(): int;
+    public function getId();
 
     /**
      * get created_at time
@@ -37,10 +37,10 @@ interface BaseEntityContract extends EntityContract
 
     /**
      * set id
-     * @param int $id
+     * @param  $id
      * @return $this
      */
-    public function setId(int $id);
+    public function setId($id);
 
     /**
      * set created_at time
