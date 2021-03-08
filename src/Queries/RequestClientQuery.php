@@ -122,10 +122,16 @@ class RequestClientQuery implements UriQueryClientContract
             }
         }
         if ($this->queryWith) {
-            $queries['with'] = $this->queryWith->getWith();
+            $with = $this->queryWith->getWith();
+            if (!empty($with)) {
+                $queries['with'] = implode(",", $with);
+            }
         }
         if ($this->querySelect) {
-            $queries['select'] = $this->querySelect->getSelects();
+            $select = $this->querySelect->getSelects();
+            if (!empty($select)) {
+                $queries['select'] = implode(",", $select);
+            }
         }
         if ($this->queryOrderBy) {
             $queries['order_by'] = $this->queryOrderBy->getOrderBy();
