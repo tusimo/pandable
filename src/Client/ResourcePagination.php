@@ -93,37 +93,37 @@ class ResourcePagination
     public function __construct(array $data)
     {
         if (isset($data['meta']['length_paginator']['current_page'])) {
-            $this->currentPage = $data['current_page'];
+            $this->currentPage = $data['meta']['length_paginator']['current_page'];
         }
         if (isset($data['meta']['length_paginator']['first_page_url'])) {
-            $this->firstPageUrl = $data['first_page_url'];
+            $this->firstPageUrl = $data['meta']['length_paginator']['first_page_url'];
         }
         if (isset($data['meta']['length_paginator']['from'])) {
-            $this->from = $data['from'];
+            $this->from = $data['meta']['length_paginator']['from'];
         }
         if (isset($data['meta']['length_paginator']['next_page_url'])) {
-            $this->nextPageUrl = $data['next_page_url'];
+            $this->nextPageUrl = $data['meta']['length_paginator']['next_page_url'];
         }
         if (isset($data['meta']['length_paginator']['path'])) {
-            $this->path = $data['path'];
+            $this->path = $data['meta']['length_paginator']['path'];
         }
         if (isset($data['meta']['length_paginator']['per_page'])) {
-            $this->perPage = $data['per_page'];
+            $this->perPage = $data['meta']['length_paginator']['per_page'];
         }
         if (isset($data['meta']['length_paginator']['prev_page_url'])) {
-            $this->prevPageUrl = $data['prev_page_url'];
+            $this->prevPageUrl = $data['meta']['length_paginator']['prev_page_url'];
         }
         if (isset($data['meta']['length_paginator']['to'])) {
-            $this->to = $data['to'];
+            $this->to = $data['meta']['length_paginator']['to'];
         }
         if (isset($data['meta']['length_paginator']['total'])) {
-            $this->total = $data['total'];
+            $this->total = $data['meta']['length_paginator']['total'];
         }
         if (isset($data['meta']['length_paginator']['last_page_url'])) {
-            $this->lastPageUrl = $data['last_page_url'];
+            $this->lastPageUrl = $data['meta']['length_paginator']['last_page_url'];
         }
         if (isset($data['meta']['length_paginator']['last_page'])) {
-            $this->lastPage = $data['last_page'];
+            $this->lastPage = $data['meta']['length_paginator']['last_page'];
         }
         $resources = [];
         if (isset($data['data'])) {

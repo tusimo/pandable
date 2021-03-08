@@ -127,7 +127,7 @@ class ApiResponse
      */
     public function toPagination()
     {
-        return new ResourcePagination($this->getData());
+        return new ResourcePagination($this->getContents());
     }
 
     /**
